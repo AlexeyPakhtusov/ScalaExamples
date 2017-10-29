@@ -1,0 +1,15 @@
+@(id: Long, bookForm: Form[Book])(implicit request: MessagesRequestHeader)
+
+@import helper._
+
+@import views.html.partials._bookFromFields
+
+@layout("Edit book") {
+    <h1 id="editBook">Edit book</h1>
+
+    @form(routes.BooksController.update(id), 'id -> "bookUpdateForm") {
+        @_bookFromFields(bookForm)
+
+        <button id="editButton" class="btn btn-primary" type="submit">Edit book</button>
+    }
+}

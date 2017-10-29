@@ -1,0 +1,7 @@
+@(bookForm: Form[Book])(implicit request: MessagesRequestHeader)
+
+@import helper._
+
+@inputText(bookForm("title"), 'class -> "form-control", '_label -> "Title", '_showConstraints -> false)
+@inputText(bookForm("price"), 'class -> "form-control", '_label -> "Price", '_showConstraints -> false)
+@inputText(bookForm("author"), 'class -> "form-control", '_label -> "Author", '_showConstraints -> false)

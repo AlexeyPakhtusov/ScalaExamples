@@ -1,0 +1,41 @@
+@(books: Seq[Book], filter: String)(implicit request: MessagesRequestHeader)
+
+@import helper._
+
+@layout("All books") {
+    <h1 id="booksCount">@books.size books found</h1>
+
+    @form(routes.BooksController.index()) {
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <input id="filterBox" type="text" class="form-control" name="filter" value="@filter" placeholder="Filter...">
+                    <span class="input-group-btn">
+                        <input id="submitFilter" type="submit" value="Filter" class="btn btn-primary">
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if(!books.isEmpty) {
+        <table id="booksTable" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(book <- books) {
+                    <tr>
+                        <td><a href="@routes.BooksController.show(book.id)">@book.title</a></td>
+                        <td>@book.price</td>
+                        <td>@book.author</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

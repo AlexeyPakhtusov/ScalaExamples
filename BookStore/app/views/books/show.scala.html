@@ -1,0 +1,15 @@
+@(book: Book)(implicit request: MessagesRequestHeader)
+
+@layout(book.title) {
+    <h1>@book.title</h1>
+
+    <p>Price: @book.price</p>
+    <p>Author: @book.author</p>
+
+    <a id="editBook" class="btn btn-primary" href="@routes.BooksController.edit(book.id)">Edit book</a>
+    <button id="deleteBook" class="btn btn-danger"
+            onclick="sendDeleteRequest('@routes.BooksController.destroy(book.id)',
+                                       '@routes.BooksController.index()')">
+        Delete book
+    </button>
+}

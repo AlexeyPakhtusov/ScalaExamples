@@ -1,0 +1,18 @@
+@(bookForm: Form[Book])(implicit request: MessagesRequestHeader)
+
+@import helper._
+
+@import views.html.partials._bookFromFields
+
+@layout("Create book") {
+    <h1 id="createBook">Create book</h1>
+
+    @form(routes.BooksController.save) {
+        @_bookFromFields(bookForm)
+
+        <button id="createButton" class="btn btn-success" type="submit">
+            <i class="glyphicon glyphicon-plus"></i>
+            Create book
+        </button>
+    }
+}
